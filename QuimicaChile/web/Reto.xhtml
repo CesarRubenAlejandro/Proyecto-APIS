@@ -5,8 +5,20 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
+    <script type="text/javascript">
+        function handleDrop(event, ui) {
+            var dropped = ui.draggable;
+            dropped.fadeOut('fast');
+        }
+    </script>
     <h:body>
-        Hello from Facelets
+        <h1>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
+            de mayor a menor concentración de capsaicina.</h1>
+        
+        <h:form id="formReto">
+            
+            
+        </h:form>
     </h:body>
 </html>
 
