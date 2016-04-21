@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -14,10 +15,35 @@
     <h:body>
         <h1>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
             de mayor a menor concentración de capsaicina.</h1>
-        
+
         <h:form id="formReto">
-            
-            
+            <p:fieldset id="availableChilesField" legend="Tipos de chiles" style="width: 50%">
+                <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
+                    <p:panel id="pnl" header="#{chile.nombreChile}" style="text-align:center;">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <img src="img/#{chile.img}.PNG" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
+            </p:fieldset>
+
+            <p:fieldset id="masPicosoFS" legend="Mas picoso" style="width: 50%">
+                <p:outputPanel id="dropArea">
+                    <p:dataGrid id="selected" var="chile" value="#{controllerReto.dropedChiles}" columns="1">
+                        <p:panel id="pnl2" header="#{chile.nombreChile}" style="text-align:center;">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.PNG" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:outputPanel>
+            </p:fieldset>
+
+            <p:droppable for="masPicosoFS" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.onChileDrop}" update="dropArea availableChilesField" />
+            </p:droppable>
+
         </h:form>
     </h:body>
 </html>
