@@ -53,14 +53,14 @@
                 </p:dataGrid>
             </p:fieldset>
 
-            <p:fieldset id="masPicosoFS" legend="Seleccionados" style="width: 40%; float: right">
+            <p:fieldset id="selectFS" legend="Seleccionados" style="width: 40%; float: right">
 
                 <p:fieldset id="select1" class="innerFieldSet">
                     <p:dataGrid id="dgSelect1" class ="innerGrid" var="chile" value="#{controllerReto.dropChile1}" columns="1">
                         <p:panel id="pnlSelect1" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
                                 <img src="img/#{chile.img}.jpg" />
-                                <p:commandButton onclick="reload();" icon="ui-icon-close"  action="#{controllerReto.deleteChile(1)}"/>
+                                <p:commandButton update=" @([id$=formReto])" icon="ui-icon-close"  actionListener="#{controllerReto.deleteChile(1)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
@@ -71,7 +71,7 @@
                         <p:panel id="pnlSelect2" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
                                 <img src="img/#{chile.img}.jpg" />
-                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(2)}"/>
+                                <p:commandButton icon="ui-icon-close" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(2)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
@@ -82,7 +82,7 @@
                         <p:panel id="pnlSelect3" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
                                 <img src="img/#{chile.img}.jpg" />
-                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(3)}"/>
+                                <p:commandButton icon="ui-icon-close" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(3)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
@@ -93,7 +93,7 @@
                         <p:panel id="pnlSelect4" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
                                 <img src="img/#{chile.img}.jpg" />
-                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(4)}"/>
+                                <p:commandButton icon="ui-icon-close" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(4)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
@@ -104,7 +104,7 @@
                         <p:panel id="pnlSelect5" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
                                 <img src="img/#{chile.img}.jpg" />
-                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(5)}"/>
+                                <p:commandButton icon="ui-icon-close" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(5)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
@@ -112,7 +112,7 @@
 
             </p:fieldset>
             
-            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" onclick="reload()"/>
+            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" update=" @([id$=formReto])"/>
             
             <p:fieldset class="fieldResultado" rendered="#{controllerReto.banderaResultado}">
                 <p:chart class="meterResultado" type="metergauge" model="#{controllerReto.meterGaugeResultado}" />
