@@ -30,7 +30,7 @@ public class ControllerReto implements Serializable {
     private static final String ID_SELECT_3 = "formReto:select3";
     private static final String ID_SELECT_4 = "formReto:select4";
     private static final String ID_SELECT_5 = "formReto:select5";
-    
+
     private static final String CHILE_1 = "Chile Moruga";
     private static final String CHILE_2 = "Habanero rojo de Sabina";
     private static final String CHILE_3 = "Chile de arbol";
@@ -140,57 +140,60 @@ public class ControllerReto implements Serializable {
     public void setListaChiles(List<Chile> listaChiles) {
         this.listaChiles = listaChiles;
     }
-    
+
     /**
      * metodo para inicializar los intervalos del MeterGauge para el resltado
-     * @return 
+     *
+     * @return
      */
     private List<Number> initIntervals() {
-        List<Number> intervals = new ArrayList<Number>(){{
-            add(20);
-            add(40);
-            add(60);
-            add(80);
-            add(100);
-        }};
-         
-        return  intervals;
+        List<Number> intervals = new ArrayList<Number>() {
+            {
+                add(20);
+                add(40);
+                add(60);
+                add(80);
+                add(100);
+            }
+        };
+
+        return intervals;
     }
 
-    public void revisaResultados(){
+    public void revisaResultados() {
         int acumResultado = 0;
-        try{
-            if(dropChile1.getNombreChile().equals(CHILE_1)){
+        try {
+            if (dropChile1.getNombreChile().equals(CHILE_1)) {
                 System.out.println("BIEN 1");
                 acumResultado += 20;
             }
-            if(dropChile2.getNombreChile().equals(CHILE_2)){
+            if (dropChile2.getNombreChile().equals(CHILE_2)) {
                 System.out.println("BIEN 2");
                 acumResultado += 20;
             }
-            if(dropChile3.getNombreChile().equals(CHILE_3)){
+            if (dropChile3.getNombreChile().equals(CHILE_3)) {
                 System.out.println("BIEN 3");
                 acumResultado += 20;
             }
-            if(dropChile4.getNombreChile().equals(CHILE_4)){
+            if (dropChile4.getNombreChile().equals(CHILE_4)) {
                 System.out.println("BIEN 4");
                 acumResultado += 20;
             }
-            if(dropChile5.getNombreChile().equals(CHILE_5)){
+            if (dropChile5.getNombreChile().equals(CHILE_5)) {
                 System.out.println("BIEN 5");
                 acumResultado += 20;
             }
             banderaResultado = true;
             meterGaugeResultado.setValue(acumResultado);
-            } catch(Exception e) {
-       
-            }
-        
+        } catch (Exception e) {
+
+        }
+
     }
-    
+
     public void deleteChile(int idChile) {
         banderaResultado = false;
-        switch (idChile){
+        switch (idChile) {
             case 1:
                 listaChiles.add(dropChile1);
                 dropChile1 = null;
@@ -202,7 +205,7 @@ public class ControllerReto implements Serializable {
             case 3:
                 listaChiles.add(dropChile3);
                 dropChile3 = null;
-                break;    
+                break;
             case 4:
                 listaChiles.add(dropChile4);
                 dropChile4 = null;
@@ -213,41 +216,47 @@ public class ControllerReto implements Serializable {
                 break;
         }
     }
-    
+
     /**
-     * Metodo listener para el caso que se arrastra desde el area de 
-     * chiles disponibles al area de seleccion
-     * @param ddEvent 
+     * Metodo listener para el caso que se arrastra desde el area de chiles
+     * disponibles al area de seleccion
+     *
+     * @param ddEvent
      */
     public void availableToSelectListener(DragDropEvent ddEvent) {
         banderaResultado = false;
         Chile aux = ((Chile) ddEvent.getData());
         switch (ddEvent.getDropId()) {
             case ID_SELECT_1:
-                if (dropChile1==null){
+                if (dropChile1 == null) {
                     dropChile1 = aux;
                     listaChiles.remove(aux);
-                }   break;
+                }
+                break;
             case ID_SELECT_2:
-                if (dropChile2 == null){
+                if (dropChile2 == null) {
                     dropChile2 = aux;
                     listaChiles.remove(aux);
-                }   break;
+                }
+                break;
             case ID_SELECT_3:
-                if (dropChile3 == null){
+                if (dropChile3 == null) {
                     dropChile3 = aux;
                     listaChiles.remove(aux);
-            }   break;
+                }
+                break;
             case ID_SELECT_4:
-                if (dropChile4 == null){
+                if (dropChile4 == null) {
                     dropChile4 = aux;
                     listaChiles.remove(aux);
-            }   break;
+                }
+                break;
             case ID_SELECT_5:
-                if (dropChile5 == null){
+                if (dropChile5 == null) {
                     dropChile5 = aux;
                     listaChiles.remove(aux);
-            }   break;
+                }
+                break;
         }
     }
 }
