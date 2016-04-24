@@ -1,23 +1,167 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Reto</title>
     </h:head>
     <script type="text/javascript">
         function handleDrop(event, ui) {
             var dropped = ui.draggable;
             dropped.fadeOut('fast');
         }
+
     </script>
+    <style>
+        .botonResultado{
+            margin-left: 15px;
+        }
+
+        .panel{
+            text-align:center !important; 
+            font-size: 14px !important;
+            height: 155px !important;   
+        }
+
+        .innerFieldSet{
+            height: 170px !important;
+        }
+
+        .fieldResultado{
+            width: 40% !important;
+            position:relative !important;
+        }
+
+        .meterResultado{
+            width: 100% !important;
+        }
+
+        .panel1 {background-color: rgb(136,0,21);}
+
+        .panel2 {background-color: rgb(147,47,4);}
+
+        .panel3 {background-color: rgb(232,238,2);}
+
+        .panel4 {background-color: rgb(138,253,23); }
+
+        .panel5 {background-color: rgb(56,112,1);}
+        
+        .notification{background-color: rgb(242,153,55);}
+    </style>
     <h:body>
         <h1>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
             de mayor a menor concentración de capsaicina.</h1>
-        
+
         <h:form id="formReto">
-            
-            
+
+            <p:fieldset id="availableChilesField" legend="Tipos de chiles" style="width: 40%; float:left">
+                <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
+                    <p:panel class="panel" id="pnlAvailable" header="#{chile.nombreChile}" >
+                        <h:panelGrid columns="1" style="width:100%">
+                            <img src="img/#{chile.img}.jpg" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:draggable for="pnlAvailable" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
+            </p:fieldset>
+
+            <p:fieldset id="selectFS" legend="Seleccionados" style="width: 40%; float: right">
+
+                <p:fieldset id="select1" styleClass="panel1 innerFieldSet">
+                    <p:dataGrid id="dgSelect1" styleClass ="innerGrid" var="chile" value="#{controllerReto.dropChile1}" columns="1">
+                        <p:panel id="pnlSelect1"  styleClass="panel panel1"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton update=" @([id$=formReto])" onclick="PF('bar').hide()" icon="ui-icon-close"  actionListener="#{controllerReto.deleteChile(1)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+                <p:fieldset id="select2" styleClass="panel2 innerFieldSet">
+                    <p:dataGrid id="dgSelect2" class ="innerGrid" var="chile" value="#{controllerReto.dropChile2}" columns="1">
+                        <p:panel id="pnlSelect2" styleClass="panel panel2"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(2)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+                <p:fieldset id="select3" styleClass="panel3 innerFieldSet">
+                    <p:dataGrid id="dgSelect3" class ="innerGrid" var="chile" value="#{controllerReto.dropChile3}" columns="1">
+                        <p:panel id="pnlSelect3" styleClass="panel panel3"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(3)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+                <p:fieldset id="select4" styleClass="panel4 innerFieldSet">
+                    <p:dataGrid id="dgSelect4" class ="innerGrid" var="chile" value="#{controllerReto.dropChile4}" columns="1">
+                        <p:panel id="pnlSelect4" styleClass="panel panel4"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(4)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+                <p:fieldset id="select5" styleClass="panel5 innerFieldSet">
+                    <p:dataGrid id="dgSelect5" class ="innerGrid" var="chile" value="#{controllerReto.dropChile5}" columns="1">
+                        <p:panel id="pnlSelect5" styleClass="panel panel5"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(5)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+            </p:fieldset>
+
+            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" update=" @([id$=formReto])" styleClass="botonResultado"/>
+
+            <p:fieldset class="fieldResultado" rendered="#{controllerReto.banderaResultado}">
+                <p:chart class="meterResultado" type="metergauge" model="#{controllerReto.meterGaugeResultado}" />
+                <p:notificationBar position="top" effect="slide" styleClass="top notification" widgetVar="bar">
+                    <img src="img/scorpion.jpg" style="float:left; margin-right: 5px;"/>
+                    <h:outputText value="Un aerosol pimienta tiene alrededor de 2 millones de unidades de picor, 
+                                  la misma concentración que el chile Escorpión Moruga, 
+                                  ¡el chile más picante en el mundo! Este chile lleva ese nombre, 
+                                  debido a que el comerlo sería como comer un escorpión vivo que picara el interior de la boca durante horas, 
+                                  porque una vez ingerido, el dolor no disminuye, ¡sino que se intensifica!" 
+                                  style="font-size:22px;" />
+                </p:notificationBar>
+                <p:commandButton value="SABIAS QUE.." onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
+                
+            </p:fieldset>
+
+
+            <p:droppable for="select1" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select1 availableChilesField" />
+            </p:droppable>
+
+            <p:droppable for="select2" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select2 availableChilesField" />
+            </p:droppable>
+
+            <p:droppable for="select3" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select3 availableChilesField" />
+            </p:droppable>
+
+            <p:droppable for="select4" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select4 availableChilesField" />
+            </p:droppable>
+
+            <p:droppable for="select5" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select5 availableChilesField" />
+            </p:droppable>
         </h:form>
     </h:body>
 </html>
