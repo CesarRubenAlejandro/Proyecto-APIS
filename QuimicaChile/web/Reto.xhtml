@@ -11,39 +11,133 @@
             var dropped = ui.draggable;
             dropped.fadeOut('fast');
         }
+        
+        function reload(){
+            location.reload(); 
+        }
     </script>
+    <style>
+        .panel{
+            text-align:center !important; 
+            font-size: 14px !important;
+            height: 155px !important;   
+        }
+
+        .innerFieldSet{
+            height: 170px !important;
+        }
+        
+        .fieldResultado{
+            width: 40% !important;
+            position:relative !important;
+        }
+        
+        .meterResultado{
+            width: 100% !important;
+        }
+    </style>
     <h:body>
         <h1>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
             de mayor a menor concentración de capsaicina.</h1>
 
         <h:form id="formReto">
-            <p:fieldset id="availableChilesField" legend="Tipos de chiles" style="width: 50%">
+
+            <p:fieldset id="availableChilesField" legend="Tipos de chiles" style="width: 40%; float:left">
                 <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
-                    <p:panel id="pnl" header="#{chile.nombreChile}" style="text-align:center;">
+                    <p:panel class="panel" id="pnlAvailable" header="#{chile.nombreChile}" >
                         <h:panelGrid columns="1" style="width:100%">
-                            <img src="img/#{chile.img}.PNG" />
+                            <img src="img/#{chile.img}.jpg" />
                         </h:panelGrid>
                     </p:panel>
-                    <p:draggable for="pnl" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                    <p:draggable for="pnlAvailable" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
                 </p:dataGrid>
             </p:fieldset>
 
-            <p:fieldset id="masPicosoFS" legend="Mas picoso" style="width: 50%">
-                <p:outputPanel id="dropArea">
-                    <p:dataGrid id="selected" var="chile" value="#{controllerReto.dropedChiles}" columns="1">
-                        <p:panel id="pnl2" header="#{chile.nombreChile}" style="text-align:center;">
+            <p:fieldset id="masPicosoFS" legend="Seleccionados" style="width: 40%; float: right">
+
+                <p:fieldset id="select1" class="innerFieldSet">
+                    <p:dataGrid id="dgSelect1" class ="innerGrid" var="chile" value="#{controllerReto.dropChile1}" columns="1">
+                        <p:panel id="pnlSelect1" class="panel"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="1" style="width:100%">
-                                <img src="img/#{chile.img}.PNG" />
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton onclick="reload();" icon="ui-icon-close"  action="#{controllerReto.deleteChile(1)}"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:dataGrid>
-                </p:outputPanel>
-            </p:fieldset>
+                </p:fieldset>
 
-            <p:droppable for="masPicosoFS" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
-                <p:ajax listener="#{controllerReto.onChileDrop}" update="dropArea availableChilesField" />
+                <p:fieldset id="select2" class="innerFieldSet">
+                    <p:dataGrid id="dgSelect2" class ="innerGrid" var="chile" value="#{controllerReto.dropChile2}" columns="1">
+                        <p:panel id="pnlSelect2" class="panel"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(2)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+                
+                <p:fieldset id="select3" class="innerFieldSet">
+                    <p:dataGrid id="dgSelect3" class ="innerGrid" var="chile" value="#{controllerReto.dropChile3}" columns="1">
+                        <p:panel id="pnlSelect3" class="panel"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(3)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+                
+                <p:fieldset id="select4" class="innerFieldSet">
+                    <p:dataGrid id="dgSelect4" class ="innerGrid" var="chile" value="#{controllerReto.dropChile4}" columns="1">
+                        <p:panel id="pnlSelect4" class="panel"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(4)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+                
+                <p:fieldset id="select5" class="innerFieldSet">
+                    <p:dataGrid id="dgSelect5" class ="innerGrid" var="chile" value="#{controllerReto.dropChile5}" columns="1">
+                        <p:panel id="pnlSelect5" class="panel"  header="#{chile.nombreChile}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <img src="img/#{chile.img}.jpg" />
+                                <p:commandButton icon="ui-icon-close" onclick="reload();" action="#{controllerReto.deleteChile(5)}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:dataGrid>
+                </p:fieldset>
+
+            </p:fieldset>
+            
+            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" onclick="reload()"/>
+            
+            <p:fieldset class="fieldResultado" rendered="#{controllerReto.banderaResultado}">
+                <p:chart class="meterResultado" type="metergauge" model="#{controllerReto.meterGaugeResultado}" />
+            </p:fieldset>
+            
+
+            <p:droppable for="select1" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select1 availableChilesField" />
             </p:droppable>
 
+            <p:droppable for="select2" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select2 availableChilesField" />
+            </p:droppable>
+            
+            <p:droppable for="select3" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select3 availableChilesField" />
+            </p:droppable>
+
+            <p:droppable for="select4" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select4 availableChilesField" />
+            </p:droppable>
+            
+            <p:droppable for="select5" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableChiles" onDrop="handleDrop">
+                <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select5 availableChilesField" />
+            </p:droppable>
         </h:form>
     </h:body>
 </html>
