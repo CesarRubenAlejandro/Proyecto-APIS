@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Reto</title>
     </h:head>
@@ -214,23 +213,23 @@
             </p:fieldset>
 
 
-            <p:droppable for="select1" tolerance="touch"  datasource="availableChiles" onDrop="handleDrop">
+            <p:droppable for="select1" tolerance="fit"  datasource="availableChiles" onDrop="handleDrop">
                 <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select1 availableChilesField" />
             </p:droppable>
 
-            <p:droppable for="select2" tolerance="touch"  datasource="availableChiles" onDrop="handleDrop">
+            <p:droppable for="select2" tolerance="fit"  datasource="availableChiles" onDrop="handleDrop">
                 <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select2 availableChilesField" />
             </p:droppable>
 
-            <p:droppable for="select3" tolerance="touch"  datasource="availableChiles" onDrop="handleDrop">
+            <p:droppable for="select3" tolerance="fit"  datasource="availableChiles" onDrop="handleDrop">
                 <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select3 availableChilesField" />
             </p:droppable>
 
-            <p:droppable for="select4" tolerance="touch"  datasource="availableChiles" onDrop="handleDrop">
+            <p:droppable for="select4" tolerance="fit"  datasource="availableChiles" onDrop="handleDrop">
                 <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select4 availableChilesField" />
             </p:droppable>
 
-            <p:droppable for="select5" tolerance="touch"  datasource="availableChiles" onDrop="handleDrop">
+            <p:droppable for="select5" tolerance="fit"  datasource="availableChiles" onDrop="handleDrop">
                 <p:ajax listener="#{controllerReto.availableToSelectListener}" update="select5 availableChilesField" />
             </p:droppable>
         </h:form>

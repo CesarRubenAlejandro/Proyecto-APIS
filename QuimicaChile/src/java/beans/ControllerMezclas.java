@@ -69,11 +69,7 @@ public class ControllerMezclas implements Serializable{
     
     public void availableToSelectListener(DragDropEvent ddEvent) {
         Alimento aux = ((Alimento) ddEvent.getData());    
-        if (alimentoActual!=null){
-            alimentos.add(alimentoActual);
-        }
         alimentoActual = aux;
-        alimentos.remove(aux);
         banderaResultado = true;
         banderaSolvente = alimentoActual.getSolvente();
         

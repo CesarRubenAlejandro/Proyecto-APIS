@@ -10,7 +10,7 @@
         function handleDrop(event, ui) {
             var dropped = ui.draggable;
             dropped.fadeOut('fast');
-            location.reload();
+            //location.reload();
         }
     </script>
     <style>
@@ -116,7 +116,7 @@
             </p:fieldset>
 
             <p:droppable for="infoFS" activeStyleClass="ui-state-highlight" tolerance="touch"  datasource="availableAlimentos" onDrop="handleDrop">
-                <p:ajax listener="#{controllerMezclas.availableToSelectListener}" update="infoFS alimentosFS" />
+                <p:ajax listener="#{controllerMezclas.availableToSelectListener}" update="@([id$=formMezclas])" />
             </p:droppable>
 
         </h:form>
