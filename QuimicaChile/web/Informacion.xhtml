@@ -75,14 +75,34 @@
         h4 {
             text-align: center !important;
         }
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo, .menu {
+            color: darkgreen !important;
+            letter-spacing: 2px !important;
+        }
+        
         .ui-tabs .ui-tabs-panel {
             padding: 0px !important;
         }
         #form {
-            margin-top: 50px;
             margin-left: 60px;
             margin-right: 60px;
             margin-bottom: 80px;
+        }
+        .ui-widget-content{
+            background: transparent !important;
+            border: none !important;
+        }
+        
+        .ui-tabmenu, .menu, .ui-tabmenu-nav {
+            background: url(img/fondo3.jpg) !important;
+            margin-bottom: 50px !important;
+        }
+        .ui-tabmenuitem {
+            background: url(img/seamless.png) !important;
+        }
+        .ui-tabs, .ui-carousel {
+            background: white !important;
+            border: 1px solid !important;
         }
 
     </style>
@@ -93,7 +113,7 @@
     <h:body>
 
         <h:form id="form">
-            <p:tabMenu activeIndex="0">
+            <p:tabMenu activeIndex="0" styleClass="menu">
                 <p:menuitem value="Informacion" target="#"  icon="ui-icon-home"/>
                 <p:menuitem value="Reto" outcome="Reto.xhtml" icon="ui-icon-lightbulb"/>
                 <p:menuitem value="Mezclas" outcome="Mezclas.xhtml"  icon="ui-icon-circle-check"/>
@@ -109,17 +129,17 @@
             <h2>La capsaicina</h2>    
             <p:tabView orientation="left">
                 <p:tab title="Nombre químico">
-                    <h:panelGrid columns="1" cellpadding="10">
+                    <h:panelGrid styleClass="square" columns="1" cellpadding="10">
                         <p> 8-metil-N-Vainillil-6-nonenamida </p>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Fórmula">
-                    <h:panelGrid columns="1" cellpadding="10">
+                    <h:panelGrid styleClass="square" columns="1" cellpadding="10">
                         <p> C<sub>18</sub>H<sub>27</sub>NO<sub>3</sub> </p>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Detalles">
-                    <h:panelGrid columns="1" cellpadding="10">
+                    <h:panelGrid styleClass="square" columns="1" cellpadding="10">
                         <p> Se trata de un compuesto sin color ni olor, en forma aceitosa 
                             localizada esencialmente en la membrana de las semillas, particularmente 
                             la del chile. A la par de este alimento, es posible encontrar capsaicina 

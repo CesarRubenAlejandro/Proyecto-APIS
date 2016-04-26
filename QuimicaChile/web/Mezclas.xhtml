@@ -19,13 +19,6 @@
             background-repeat: repeat;
         }
         
-        .form {
-            margin-top: 50px !important;
-            margin-left: 60px !important;
-            margin-right: 60px !important;
-            margin-bottom: 80px !important;
-        }
-        
         .selectImg{
             width:120px; 
             height: 90px;
@@ -38,8 +31,7 @@
 
         
 
-        #form {
-            margin-top: 50px;
+        .form {
             margin-left: 60px;
             margin-right: 60px;
             margin-bottom: 80px;
@@ -60,7 +52,7 @@
             width:45%;
         }
         
-        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo {
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo, .menu {
             color: darkgreen !important;
             letter-spacing: 2px !important;
         }
@@ -72,12 +64,20 @@
         
         .panel{
             text-align: center;
-            border: 1px solid black !important;
+            border: 1px solid !important;
+        }
+        
+        .ui-tabmenu, .menu, .ui-tabmenu-nav {
+            background: url(img/fondo3.jpg) !important;
+            margin-bottom: 50px !important;
+        }
+        .ui-tabmenuitem {
+            background: url(img/seamless.png) !important;
         }
     </style>
     <h:body>
-        <h:form id="formMezlas" class="form">
-            <p:tabMenu activeIndex="2">
+        <h:form id="formMezclas" class="form">
+            <p:tabMenu activeIndex="2" styleClass="menu">
                 <p:menuitem value="Informacion" outcome="Informacion.xhtml" icon="ui-icon-home"/>
                 <p:menuitem value="Reto"  outcome="Reto.xhtml" icon="ui-icon-lightbulb"/>
                 <p:menuitem value="Mezclas"  icon="ui-icon-circle-check"/>
@@ -98,7 +98,7 @@
                 </p:dataGrid>
             </p:fieldset>
 
-            <p:fieldset styleClass="infoFS titulo" id="infoFS" legend="Arrastra aquí" >
+            <p:fieldset styleClass="infoFS titulo" id="infoFS" legend="¿Qué combinarías con el chile?" >
                 <p:dataGrid id="selectedGrid" var="alimento" value="#{controllerMezclas.alimentoActual}" columns="1">
                     <p:panel styleClass="panel" id="selectedPnl" header="#{alimento.nombreAlimento}" >
                         <h:panelGrid columns="1" style="width:100%">

@@ -93,7 +93,6 @@
         }
 
         .form {
-            margin-top: 50px !important;
             margin-left: 60px !important;
             margin-right: 60px !important;
             margin-bottom: 800px !important;
@@ -101,17 +100,24 @@
         .top {
             background-color: orange !important;
         }
-        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo {
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo, .menu {
             color: darkgreen !important;
             letter-spacing: 2px !important;
         }
         .notitulo {
             letter-spacing: normal !important;
         }
+        .ui-tabmenu, .menu, .ui-tabmenu-nav {
+            background: url(img/fondo3.jpg) !important;
+            margin-bottom: 50px !important;
+        }
+        .ui-tabmenuitem {
+            background: url(img/seamless.png) !important;
+        }
     </style>
     <h:body>
         <h:form id="formReto" class="form">
-            <p:tabMenu activeIndex="1">
+            <p:tabMenu activeIndex="1" styleClass="menu">
                 <p:menuitem value="Informacion" outcome="Informacion.xhtml" icon="ui-icon-home"/>
                 <p:menuitem value="Reto"  icon="ui-icon-lightbulb"/>
                 <p:menuitem value="Mezclas" outcome="Mezclas.xhtml"  icon="ui-icon-circle-check"/>
