@@ -14,20 +14,16 @@
 
     </script>
     <style>
+        
         body  {
-            background-image: url(img/geometry.png);
+            background-image: url(img/seamless.png);
             background-repeat: repeat;
         }
         
         .botonResultado{
             margin-left: 15px;
             border-radius: 10px;
-        }
-
-        .panel{
-            text-align:center !important; 
-            font-size: 14px !important;
-            height: 105px !important;   
+            margin-bottom: 15px;
         }
 
         .innerFieldSet{
@@ -47,15 +43,15 @@
             height: 110px;
         }
 
-        .colorpanel1 {background-color: rgb(136,0,21);}
+        .colorpanel1 {background-color: transparent;}
 
-        .colorpanel2 {background-color: rgb(147,47,4);}
+        .colorpanel2 {background-color: transparent;}
 
-        .colorpanel3 {background-color: rgb(232,238,2);}
+        .colorpanel3 {background-color: transparent;}
 
-        .colorpanel4 {background-color: rgb(138,253,23); }
+        .colorpanel4 {background-color: transparent; }
 
-        .colorpanel5 {background-color: rgb(56,112,1);}
+        .colorpanel5 {background-color: transparent;}
         
         .notification{background-color: rgb(242,153,55);}
         
@@ -64,14 +60,45 @@
         .selectImg{width:90px; height: 60px;}
         
         .selectFieldSet{width: 20%; float: right; margin-right: 100px;}
+        
+         h1, h4 {
+            color: firebrick !important;
+            font-family: helvetica !important;
+        }
+        h1 {
+            float: left;
+        }
+        h4 {
+            width: 50%;
+            float: left;
+        }
+        
+        .ui-widget-content {
+            background: transparent !important;
+            border: none !important;
+        }
+        .bigFieldsetSelected {
+            background-color: transparent !important;
+            background-image: url(img/escalaColores.png) !important;
+        }
+        .bigFieldsetAvailable, .panel {
+            background: transparent !important;
+        }
+        .panel{
+            text-align:center !important; 
+            font-size: 14px !important;
+            height: 105px !important;
+            border: 1px solid !important;
+        }
     </style>
     <h:body>
-        <h1>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
-            de mayor a menor concentración de capsaicina.</h1>
+        <h1>¡Tu Reto! </h1>
+        <h4>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
+            de mayor a menor concentración de capsaicina.</h4>
 
         <h:form id="formReto">
 
-            <p:fieldset id="availableChilesField" legend="Tipos de chiles" style="width: 40%; float:left">
+            <p:fieldset id="availableChilesField" class="bigFieldsetAvailable" legend="Tipos de chiles" style="width: 40%; float:left" rendered="#{!controllerReto.banderaResultado}">
                 <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
                     <p:panel styleClass="panel" id="pnlAvailable" header="#{chile.nombreChile}" >
                         <h:panelGrid columns="1" style="width:100%">
@@ -82,12 +109,12 @@
                 </p:dataGrid>
             </p:fieldset>
 
-            <p:fieldset id="selectFS" legend="Seleccionados" styleClass="selectFieldSet">
+            <p:fieldset id="selectFS" legend="Seleccionados" styleClass="selectFieldSet" class ="bigFieldsetSelected">
 
                 <p:fieldset id="select1" styleClass="colorpanel1 innerFieldSet">
                     <p:dataGrid id="dgSelect1" styleClass ="innerGrid" var="chile" value="#{controllerReto.dropChile1}" columns="1">
                         <p:panel id="pnlSelect1"  styleClass="panel colorpanel1"  header="#{chile.nombreChile}">
-                            <h:panelGrid columns="2" style="width:100%">
+                            <h:panelGrid columns="2" style="width:100%;">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton  update=" @([id$=formReto])" onclick="PF('bar').hide()" icon="ui-icon-close"  actionListener="#{controllerReto.deleteChile(1)}"/>
                             </h:panelGrid>
@@ -146,7 +173,7 @@
             <p:fieldset class="fieldResultado" rendered="#{controllerReto.banderaResultado}">
                 <p:chart class="meterResultado" type="metergauge" model="#{controllerReto.meterGaugeResultado}" />
                 <p:notificationBar position="top" effect="slide" styleClass="top notification" widgetVar="bar">
-                    <img src="img/scorpion.jpg" style="float:left; margin-right: 5px;"/>
+                    <img src="img/scorpion.png" style="float:left; margin-right: 5px;"/>
                     <h:outputText value="Un aerosol pimienta tiene alrededor de 2 millones de unidades de picor, 
                                   la misma concentración que el chile Escorpión Moruga, 
                                   ¡el chile más picante en el mundo! Este chile lleva ese nombre, 
@@ -154,7 +181,7 @@
                                   porque una vez ingerido, el dolor no disminuye, ¡sino que se intensifica!" 
                                   style="font-size:22px;" />
                 </p:notificationBar>
-                <p:commandButton value="SABIAS QUE.." onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
+                <p:commandButton value="¿SABÍAS QUE...?" onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
                 
             </p:fieldset>
 
