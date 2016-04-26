@@ -65,13 +65,6 @@
             color: firebrick !important;
             font-family: helvetica !important;
         }
-        h1 {
-            float: left;
-        }
-        h4 {
-            width: 50%;
-            float: left;
-        }
         
         .ui-widget-content {
             background: transparent !important;
@@ -80,6 +73,12 @@
         .bigFieldsetSelected {
             background-color: transparent !important;
             background-image: url(img/escalaColores.png) !important;
+            width: 30%;
+            float: right;
+        }
+        .bigFieldsetAvailable {
+            width: 30%;
+            float: left;
         }
         .bigFieldsetAvailable, .panel {
             background: transparent !important;
@@ -87,20 +86,37 @@
         .panel{
             text-align:center !important; 
             font-size: 14px !important;
-            height: 105px !important;
+            height: 113px !important;
             border: 1px solid !important;
+            width: 230px !important;
+        }
+        
+        .form {
+            margin-top: 50px !important;
+            margin-left: 60px !important;
+            margin-right: 60px !important;
+            margin-bottom: 800px !important;
+        }
+        .top {
+            background-color: orange !important;
+        }
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .titulo {
+            color: darkgreen !important;
+            letter-spacing: 2px !important;
+        }
+        .notitulo {
+            letter-spacing: normal !important;
         }
     </style>
     <h:body>
+        <h:form id="formReto" class="form">
         <h1>¡Tu Reto! </h1>
         <h4>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
             de mayor a menor concentración de capsaicina.</h4>
 
-        <h:form id="formReto">
-
-            <p:fieldset id="availableChilesField" class="bigFieldsetAvailable" legend="Tipos de chiles" style="width: 40%; float:left" rendered="#{!controllerReto.banderaResultado}">
+        <p:fieldset id="availableChilesField" class="bigFieldsetAvailable" styleClass="titulo" legend="Tipos de chiles" style="width: 40%; float:left" rendered="#{!controllerReto.banderaResultado}">
                 <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
-                    <p:panel styleClass="panel" id="pnlAvailable" header="#{chile.nombreChile}" >
+                    <p:panel styleClass="panel notitulo" id="pnlAvailable" header="#{chile.nombreChile}" >
                         <h:panelGrid columns="1" style="width:100%">
                             <img class="selectImg" src="img/#{chile.img}.jpg" />
                         </h:panelGrid>
@@ -109,11 +125,11 @@
                 </p:dataGrid>
             </p:fieldset>
 
-            <p:fieldset id="selectFS" legend="Seleccionados" styleClass="selectFieldSet" class ="bigFieldsetSelected">
+            <p:fieldset id="selectFS" legend="Seleccionados" styleClass="selectFieldSet" class ="titulo bigFieldsetSelected">
 
                 <p:fieldset id="select1" styleClass="colorpanel1 innerFieldSet">
                     <p:dataGrid id="dgSelect1" styleClass ="innerGrid" var="chile" value="#{controllerReto.dropChile1}" columns="1">
-                        <p:panel id="pnlSelect1"  styleClass="panel colorpanel1"  header="#{chile.nombreChile}">
+                        <p:panel id="pnlSelect1"  styleClass="panel colorpanel1 notitulo"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="2" style="width:100%;">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton  update=" @([id$=formReto])" onclick="PF('bar').hide()" icon="ui-icon-close"  actionListener="#{controllerReto.deleteChile(1)}"/>
@@ -124,7 +140,7 @@
 
                 <p:fieldset id="select2" styleClass="colorpanel2 innerFieldSet">
                     <p:dataGrid id="dgSelect2" class ="innerGrid" var="chile" value="#{controllerReto.dropChile2}" columns="1">
-                        <p:panel id="pnlSelect2" styleClass="panel colorpanel2"  header="#{chile.nombreChile}">
+                        <p:panel id="pnlSelect2" styleClass="panel colorpanel2 notitulo"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="2" style="width:100%">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(2)}"/>
@@ -135,7 +151,7 @@
 
                 <p:fieldset id="select3" styleClass="colorpanel3 innerFieldSet">
                     <p:dataGrid id="dgSelect3" class ="innerGrid" var="chile" value="#{controllerReto.dropChile3}" columns="1">
-                        <p:panel id="pnlSelect3" styleClass="panel colorpanel3"  header="#{chile.nombreChile}">
+                        <p:panel id="pnlSelect3" styleClass="panel colorpanel3 notitulo"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="2" style="width:100%">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(3)}"/>
@@ -146,7 +162,7 @@
 
                 <p:fieldset id="select4" styleClass="colorpanel4 innerFieldSet">
                     <p:dataGrid id="dgSelect4" class ="innerGrid" var="chile" value="#{controllerReto.dropChile4}" columns="1">
-                        <p:panel id="pnlSelect4" styleClass="panel colorpanel4"  header="#{chile.nombreChile}">
+                        <p:panel id="pnlSelect4" styleClass="panel colorpanel4 notitulo"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="2" style="width:100%">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(4)}"/>
@@ -157,7 +173,7 @@
 
                 <p:fieldset id="select5" styleClass="colorpanel5 innerFieldSet">
                     <p:dataGrid id="dgSelect5" class ="innerGrid" var="chile" value="#{controllerReto.dropChile5}" columns="1">
-                        <p:panel id="pnlSelect5" styleClass="panel colorpanel5"  header="#{chile.nombreChile}">
+                        <p:panel id="pnlSelect5" styleClass="panel colorpanel5 notitulo"  header="#{chile.nombreChile}">
                             <h:panelGrid columns="2" style="width:100%">
                                 <img class="selectImg" src="img/#{chile.img}.jpg" />
                                 <p:commandButton icon="ui-icon-close" onclick="PF('bar').hide()" update=" @([id$=formReto])" action="#{controllerReto.deleteChile(5)}"/>
@@ -168,9 +184,9 @@
 
             </p:fieldset>
 
-            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" update=" @([id$=formReto])" styleClass="botonResultado"/>
+            <p:commandButton icon="ui-icon-check" value="Resultados" action="#{controllerReto.revisaResultados}" update=" @([id$=formReto])" styleClass="botonResultado titulo"/>
 
-            <p:fieldset class="fieldResultado" rendered="#{controllerReto.banderaResultado}">
+            <p:fieldset class="fieldResultado" styleClass="titulo" rendered="#{controllerReto.banderaResultado}">
                 <p:chart class="meterResultado" type="metergauge" model="#{controllerReto.meterGaugeResultado}" />
                 <p:notificationBar position="top" effect="slide" styleClass="top notification" widgetVar="bar">
                     <img src="img/scorpion.png" style="float:left; margin-right: 5px;"/>
@@ -179,9 +195,9 @@
                                   ¡el chile más picante en el mundo! Este chile lleva ese nombre, 
                                   debido a que el comerlo sería como comer un escorpión vivo que picara el interior de la boca durante horas, 
                                   porque una vez ingerido, el dolor no disminuye, ¡sino que se intensifica!" 
-                                  style="font-size:22px;" />
+                                  style="font-size:20px !important; padding-top:150px !important; text-align: justify !important;" />
                 </p:notificationBar>
-                <p:commandButton value="¿SABÍAS QUE...?" onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
+                <p:commandButton styleClass="titulo" value="¿SABÍAS QUE...?" onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
                 
             </p:fieldset>
 
