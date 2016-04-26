@@ -10,10 +10,16 @@
         function handleDrop(event, ui) {
             var dropped = ui.draggable;
             dropped.fadeOut('fast');
+            location.reload();
         }
     </script>
     <style>
         .selectImg{
+            width:120px; 
+            height: 90px;
+        }
+
+        .resultImg{
             width:120px; 
             height: 90px;
         }
@@ -28,7 +34,7 @@
             margin-right: 60px;
             margin-bottom: 80px;
         }
-        
+
         h1, h2, h4 {
             color: firebrick !important;
             font-family: helvetica !important;
@@ -39,12 +45,12 @@
         h4 {
             text-align: center !important;
         }
-        
+
         .selectFS{
             float:left;
             width:45%;
         }
-        
+
         .infoFS{
             float:right;
             width:45%;
@@ -67,7 +73,7 @@
                     <p:draggable for="pnlAvailable" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
                 </p:dataGrid>
             </p:fieldset>
-            
+
             <p:fieldset styleClass="infoFS" id="infoFS" legend="Arrastra aqui" >
                 <p:dataGrid id="selectedGrid" var="alimento" value="#{controllerMezclas.alimentoActual}" columns="1">
                     <p:panel styleClass="panel" id="selectedPnl" header="#{alimento.nombreAlimento}" >
@@ -76,12 +82,19 @@
                         </h:panelGrid>
                     </p:panel>
                 </p:dataGrid>
+                
+                <p:panel id="panelInfo" header="Resultado" rendered="#{controllerMezclas.banderaResultado}">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <img class="resultImg" src="#{controllerMezclas.alimentoActual.solvente ? 'img/true.png' : 'img/false.png'}"/>
+                        <h:outputText value="#{controllerMezclas.alimentoActual.descripcion}" />
+                    </h:panelGrid>
+                </p:panel>
             </p:fieldset>
-            
+
             <p:droppable for="infoFS" activeStyleClass="ui-state-highlight" tolerance="touch"  datasource="availableAlimentos" onDrop="handleDrop">
                 <p:ajax listener="#{controllerMezclas.availableToSelectListener}" update="infoFS alimentosFS" />
             </p:droppable>
-            
+
         </h:form>
     </h:body>
 </html>

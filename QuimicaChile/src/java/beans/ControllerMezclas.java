@@ -6,7 +6,6 @@
 package beans;
 
 import data.Alimento;
-import data.Chile;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -24,11 +23,32 @@ public class ControllerMezclas implements Serializable{
     
     private ArrayList<Alimento> alimentos;
     private Alimento alimentoActual;
+    private boolean banderaResultado;
+    private boolean banderaSolvente;
     
     @PostConstruct
     public void init() {
         // inicializar lista de alimentos
         alimentos = Alimento.getListaAlimentos();
+        // bandera para panel e imagen de resultado apagada
+        banderaResultado = false;
+        banderaSolvente = false;
+    }
+
+    public boolean isBanderaSolvente() {
+        return banderaSolvente;
+    }
+
+    public void setBanderaSolvente(boolean banderaSolvente) {
+        this.banderaSolvente = banderaSolvente;
+    }
+
+    public boolean isBanderaResultado() {
+        return banderaResultado;
+    }
+
+    public void setBanderaResultado(boolean banderaResultado) {
+        this.banderaResultado = banderaResultado;
     }
 
     public ArrayList<Alimento> getAlimentos() {
@@ -49,7 +69,14 @@ public class ControllerMezclas implements Serializable{
     
     public void availableToSelectListener(DragDropEvent ddEvent) {
         Alimento aux = ((Alimento) ddEvent.getData());    
+        if (alimentoActual!=null){
+            alimentos.add(alimentoActual);
+        }
         alimentoActual = aux;
+        alimentos.remove(aux);
+        banderaResultado = true;
+        banderaSolvente = alimentoActual.getSolvente();
+        
     }
         
 }
