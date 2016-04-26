@@ -1,12 +1,88 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Mezclas</title>
     </h:head>
+    <script type="text/javascript">
+        function handleDrop(event, ui) {
+            var dropped = ui.draggable;
+            dropped.fadeOut('fast');
+        }
+    </script>
+    <style>
+        .selectImg{
+            width:120px; 
+            height: 90px;
+        }
+
+        .panel{
+            text-align: center;
+        }
+
+        #form {
+            margin-top: 50px;
+            margin-left: 60px;
+            margin-right: 60px;
+            margin-bottom: 80px;
+        }
+        
+        h1, h2, h4 {
+            color: firebrick !important;
+            font-family: helvetica !important;
+        }
+        h2 {
+            margin-top: 60px !important;
+        }
+        h4 {
+            text-align: center !important;
+        }
+        
+        .selectFS{
+            float:left;
+            width:45%;
+        }
+        
+        .infoFS{
+            float:right;
+            width:45%;
+        }
+    </style>
     <h:body>
-        Hello from Facelets
+        <h:form id="formMezlas">
+            <h1>Mezclas</h1>
+            <h4>Observa los siguientes elementos y su estructura, y analiza con 
+                cuál de ellos se podría diluiría la capsaicina, y por consiguiente, aliviar el picor de un chile.</h4>
+            <h4>Arrastra los alimentos para ver su interaccion con el chile.</h4>
+
+            <p:fieldset styleClass="selectFS" id="alimentosFS" legend="Alimentos" >
+                <p:dataGrid id="availableAlimentos" var="alimento" value="#{controllerMezclas.alimentos}" columns="2">
+                    <p:panel styleClass="panel" id="pnlAvailable" header="#{alimento.nombreAlimento}" >
+                        <h:panelGrid columns="1" style="width:100%">
+                            <img class="selectImg" src="img/#{alimento.img}.PNG" />
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:draggable for="pnlAvailable" revert="true" handle=".ui-panel-titlebar" stack=".ui-panel"/>
+                </p:dataGrid>
+            </p:fieldset>
+            
+            <p:fieldset styleClass="infoFS" id="infoFS" legend="Arrastra aqui" >
+                <p:dataGrid id="selectedGrid" var="alimento" value="#{controllerMezclas.alimentoActual}" columns="1">
+                    <p:panel styleClass="panel" id="selectedPnl" header="#{alimento.nombreAlimento}" >
+                        <h:panelGrid columns="1" style="width:100%">
+                            <img class="selectImg" src="img/#{alimento.img}.PNG" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:dataGrid>
+            </p:fieldset>
+            
+            <p:droppable for="infoFS" activeStyleClass="ui-state-highlight" tolerance="touch"  datasource="availableAlimentos" onDrop="handleDrop">
+                <p:ajax listener="#{controllerMezclas.availableToSelectListener}" update="infoFS alimentosFS" />
+            </p:droppable>
+            
+        </h:form>
     </h:body>
 </html>
 
