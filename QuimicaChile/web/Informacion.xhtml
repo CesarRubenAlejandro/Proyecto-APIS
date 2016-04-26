@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <style> 
         body  {
             background-image: url(img/seamless.png);
@@ -17,7 +17,7 @@
         }
         .siteImage {
             height: 200px !important;
-             
+
         }
         .switchImage {
             width: 300px !important;
@@ -84,26 +84,33 @@
             margin-right: 60px;
             margin-bottom: 80px;
         }
-        
+
     </style>
-    
+
     <h:head>
         <title>Explorando la química del chile</title>
     </h:head>
     <h:body>
+
         <h:form id="form">
+            <p:tabMenu activeIndex="0">
+                <p:menuitem value="Informacion" target="#"  icon="ui-icon-home"/>
+                <p:menuitem value="Reto" outcome="Reto.xhtml" icon="ui-icon-lightbulb"/>
+                <p:menuitem value="Mezclas" outcome="Mezclas.xhtml"  icon="ui-icon-circle-check"/>
+            </p:tabMenu>
+
             <h1>Explorando la química del chile</h1>
             <p> El sabor picante de los chiles es un efecto sensorial producido por un grupo de compuestos 
                 llamados capsaicinoides, considerados como alcaloides. El más abundante de estos compuestos 
                 en el chile es la <span class="keyword">capsaicina</span>. </p>
-                
+
             <img class="siteImage centeredItem" src="img/capsaicina.png"/>
-        
+
             <h2>La capsaicina</h2>    
             <p:tabView orientation="left">
                 <p:tab title="Nombre químico">
                     <h:panelGrid columns="1" cellpadding="10">
-                            <p> 8-metil-N-Vainillil-6-nonenamida </p>
+                        <p> 8-metil-N-Vainillil-6-nonenamida </p>
                     </h:panelGrid>
                 </p:tab>
                 <p:tab title="Fórmula">
@@ -128,19 +135,19 @@
                 </p:column>
                 <p:column>
                     <p><span class="keyword">Escala de picor Scoville: </span> fue diseñada por el químico y farmacéutico estadounidense 
-                    <span class="keyword"> Wilbur Lincoln Scoville </span> 
-                en 1912. Es una medida o unidad desarrollada a través de un examen organoléptico
-                para reconocer el picor de los chiles, y de esta manera indicar la cantidad de capsaicina presente
-                en el mismo. Para determinar la cantidad de picante del chile, Scoville agarraba un extracto
-                de chile y lo diluía en agua con azúcar hasta que el picante no pudiera ser detectado; 
-                el índice de disolución del extracto reflejaba la medida en la escala. Por ejemplo, si se partía de 
-                1 ml de extracto de chile y la dilución para no lograr detectar el picor era de 100 ml de agua con 
-                azúcar, por consiguiente, se daba una clasificación  de 100 unidades de picor en la escala Scoville.
-                Hoy en día, el examen organoléptico está descontinuado, debido a su imprecisión; sin embargo, 
-                se conserva la escala como referencia.</p>
+                        <span class="keyword"> Wilbur Lincoln Scoville </span> 
+                        en 1912. Es una medida o unidad desarrollada a través de un examen organoléptico
+                        para reconocer el picor de los chiles, y de esta manera indicar la cantidad de capsaicina presente
+                        en el mismo. Para determinar la cantidad de picante del chile, Scoville agarraba un extracto
+                        de chile y lo diluía en agua con azúcar hasta que el picante no pudiera ser detectado; 
+                        el índice de disolución del extracto reflejaba la medida en la escala. Por ejemplo, si se partía de 
+                        1 ml de extracto de chile y la dilución para no lograr detectar el picor era de 100 ml de agua con 
+                        azúcar, por consiguiente, se daba una clasificación  de 100 unidades de picor en la escala Scoville.
+                        Hoy en día, el examen organoléptico está descontinuado, debido a su imprecisión; sin embargo, 
+                        se conserva la escala como referencia.</p>
                 </p:column>
             </h:panelGrid>
-            
+
             <p>Actualmente se emplean procesos más sofisticados para identificar el nivel de capsaicina 
                 presente en los chiles, usando herramientas  que miden la cantidad de  concentración en 
                 <span class="keyword"> partes por millón (ppm)</span> 
@@ -157,30 +164,30 @@
                 de capsaicina. </p>
 
             <p:carousel class="centeredItem" value="#{controllerInformacion.chiles}" headerText="Picor" var="chile" 
-                    itemStyle="height:200px;text-align:center" numVisible="1"  
-                    style="width:250px" circular="true">
-            <h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
-                <f:facet name="header">
-                    <img src="img/#{chile.img}.PNG"/> 
-                </f:facet>
+                        itemStyle="height:200px;text-align:center" numVisible="1"  
+                        style="width:250px" circular="true">
+                <h:panelGrid columns="2" style="width:100%" columnClasses="label,value">
+                    <f:facet name="header">
+                        <img src="img/#{chile.img}.PNG"/> 
+                    </f:facet>
 
-                <h:outputText value="Nombre:" />
-                <h:outputText value="#{chile.nombreChile}" />
+                    <h:outputText value="Nombre:" />
+                    <h:outputText value="#{chile.nombreChile}" />
 
-                <h:outputText value="Picor:" />
-                <h:outputText value="#{chile.picor} unidades de picor" />
+                    <h:outputText value="Picor:" />
+                    <h:outputText value="#{chile.picor} unidades de picor" />
 
-            </h:panelGrid>
-        </p:carousel> 
-        
-        <h2> ¿Qué harías para quitarte el picor de un chile? </h2>
-        <p>Un compuesto polar es una molécula cuya estructura presenta regiones distintas de carga 
-            positiva y negativa con diferencias de electronegatividad. Por lo que cualquier molécula 
-            que tiene una carga positiva parcial y una carga negativa parcial se clasifica como polar. 
-            Mientras que un compuesto no polar es aquel en el que los electrones cargados negativamente 
-            y los protones cargados positivamente se distribuyen uniformemente.</p>
-        
-        
+                </h:panelGrid>
+            </p:carousel> 
+
+            <h2> ¿Qué harías para quitarte el picor de un chile? </h2>
+            <p>Un compuesto polar es una molécula cuya estructura presenta regiones distintas de carga 
+                positiva y negativa con diferencias de electronegatividad. Por lo que cualquier molécula 
+                que tiene una carga positiva parcial y una carga negativa parcial se clasifica como polar. 
+                Mientras que un compuesto no polar es aquel en el que los electrones cargados negativamente 
+                y los protones cargados positivamente se distribuyen uniformemente.</p>
+
+
             <h4> Un buen ejemplo de un compuesto polar es el agua: </h4>
 
             <p:imageSwitch class="centeredItem" effect="fade">
@@ -196,15 +203,15 @@
                     <img class="siteImage switchImage" src="img/#{imageH}" />
                 </ui:repeat>
             </p:imageSwitch>
-        
-        
-        <p> La capsaicina es una molécula no polar, debido a que uno de los extremos de la molécula tiene una 
-            cadena larga de hidrocarburos que son no polares.</p>
-        <p> Además, lo que sea polar será atraído y disuelto por lo polar; en contraparte, lo no polar 
-            disuelve lo no polar. Al ser la capsaicina, un compuesto no polar, solo será disuelta por 
-            compuesto no polares.</p>
-            
-        <img class="siteImage centeredItem" src="img/enchilado.png" />
+
+
+            <p> La capsaicina es una molécula no polar, debido a que uno de los extremos de la molécula tiene una 
+                cadena larga de hidrocarburos que son no polares.</p>
+            <p> Además, lo que sea polar será atraído y disuelto por lo polar; en contraparte, lo no polar 
+                disuelve lo no polar. Al ser la capsaicina, un compuesto no polar, solo será disuelta por 
+                compuesto no polares.</p>
+
+            <img class="siteImage centeredItem" src="img/enchilado.png" />
         </h:form>
     </h:body>
 </html>

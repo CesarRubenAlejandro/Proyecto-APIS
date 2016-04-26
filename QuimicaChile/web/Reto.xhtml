@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Reto</title>
     </h:head>
@@ -14,12 +15,12 @@
 
     </script>
     <style>
-        
+
         body  {
             background-image: url(img/seamless.png);
             background-repeat: repeat;
         }
-        
+
         .botonResultado{
             margin-left: 15px;
             border-radius: 10px;
@@ -38,7 +39,7 @@
         .meterResultado{
             width: 100% !important;
         }
-        
+
         .innerGrid{
             height: 110px;
         }
@@ -52,20 +53,20 @@
         .colorpanel4 {background-color: transparent; }
 
         .colorpanel5 {background-color: transparent;}
-        
+
         .notification{background-color: rgb(242,153,55);}
-        
+
         .deleteButton{width: 40px; height: 15px; float:right;}
-        
+
         .selectImg{width:90px; height: 60px;}
-        
+
         .selectFieldSet{width: 20%; float: right; margin-right: 100px;}
-        
-         h1, h4 {
+
+        h1, h4 {
             color: firebrick !important;
             font-family: helvetica !important;
         }
-        
+
         .ui-widget-content {
             background: transparent !important;
             border: none !important;
@@ -90,7 +91,7 @@
             border: 1px solid !important;
             width: 230px !important;
         }
-        
+
         .form {
             margin-top: 50px !important;
             margin-left: 60px !important;
@@ -110,11 +111,16 @@
     </style>
     <h:body>
         <h:form id="formReto" class="form">
-        <h1>¡Tu Reto! </h1>
-        <h4>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
-            de mayor a menor concentración de capsaicina.</h4>
+            <p:tabMenu activeIndex="1">
+                <p:menuitem value="Informacion" outcome="Informacion.xhtml" icon="ui-icon-home"/>
+                <p:menuitem value="Reto"  icon="ui-icon-lightbulb"/>
+                <p:menuitem value="Mezclas" outcome="Mezclas.xhtml"  icon="ui-icon-circle-check"/>
+            </p:tabMenu>
+            <h1>¡Tu Reto! </h1>
+            <h4>De acuerdo a la escala de Scoville, ordena los siguientes chiles 
+                de mayor a menor concentración de capsaicina.</h4>
 
-        <p:fieldset id="availableChilesField" class="bigFieldsetAvailable" styleClass="titulo" legend="Tipos de chiles" style="width: 40%; float:left" rendered="#{!controllerReto.banderaResultado}">
+            <p:fieldset id="availableChilesField" class="bigFieldsetAvailable" styleClass="titulo" legend="Tipos de chiles" style="width: 40%; float:left" rendered="#{!controllerReto.banderaResultado}">
                 <p:dataGrid id="availableChiles" var="chile" value="#{controllerReto.listaChiles}" columns="2">
                     <p:panel styleClass="panel notitulo" id="pnlAvailable" header="#{chile.nombreChile}" >
                         <h:panelGrid columns="1" style="width:100%">
@@ -198,7 +204,7 @@
                                   style="font-size:20px !important; padding-top:150px !important; text-align: justify !important;" />
                 </p:notificationBar>
                 <p:commandButton styleClass="titulo" value="¿SABÍAS QUE...?" onclick="PF('bar').toggle()" type="button" icon="ui-icon-carat-2-n-s"/>
-                
+
             </p:fieldset>
 
 
